@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+source /opt/rh/rh-ruby22/enable
+
+# Support changing environment variable options via docker run -e
+env > /var/www/ood/apps/sys/shell/.env
+
+/opt/rh/httpd24/root/usr/sbin/httpd -DFOREGROUND
