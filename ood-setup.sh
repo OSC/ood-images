@@ -4,8 +4,9 @@ set -e
 
 # Force httpd24 service to use scl ruby
 sed -i 's/^HTTPD24_HTTPD_SCLS_ENABLED=.*/HTTPD24_HTTPD_SCLS_ENABLED="httpd24 rh-ruby22"/g' /opt/rh/httpd24/service-environment
-# Disable SELinux unless running in docker container
-if [ ! -f /.dockerenv ]; then
+# Disable SELinux unless running in docker container or it's disabled
+getenforce | grep -q Disabled
+if [ ! -f /.dockerenv -a $? -ne 0 ]; then
     setenforce 0
     sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux
 fi
