@@ -59,10 +59,10 @@ mkdir -p /var/www/ood/apps/sys
 cd /var/www/ood/apps/sys
 scl enable git19 -- git clone https://github.com/OSC/ood-dashboard.git dashboard
 cd dashboard
+scl enable git19 -- git reset --hard v1.7.1
 scl enable rh-ruby22 -- bin/bundle install --path=vendor/bundle
 scl enable rh-ruby22 nodejs010 -- bin/rake assets:precompile RAILS_ENV=production
 scl enable rh-ruby22 nodejs010 -- bin/rake tmp:clear
-scl enable git19 -- git reset --hard v1.6.0
 
 # shell
 cd /var/www/ood/apps/sys
@@ -77,14 +77,14 @@ scl enable nodejs010 -- tmp/node_modules/.bin/npm install
 cd /var/www/ood/apps/sys
 scl enable git19 -- git clone https://github.com/OSC/ood-fileexplorer.git files
 cd files
-scl enable git19 -- git reset --hard v1.2.2
+scl enable git19 -- git reset --hard v1.3.0
 scl enable git19 nodejs010 -- npm i
 
 # file-editor
 cd /var/www/ood/apps/sys
 scl enable git19 -- git clone https://github.com/OSC/ood-fileeditor file-editor
 cd file-editor
-scl enable git19 -- git reset --hard v1.1.1
+scl enable git19 -- git reset --hard v1.2.0
 scl enable rh-ruby22 -- bin/bundle install --path=vendor/bundle
 scl enable rh-ruby22 nodejs010 -- bin/rake assets:precompile RAILS_ENV=production
 scl enable rh-ruby22 nodejs010 -- bin/rake tmp:clear
