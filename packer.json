@@ -1,0 +1,48 @@
+{
+  "builders": [
+    {
+      "boot_command": [
+        "<esc>",
+        "<wait>linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ood.ks<enter>"
+      ],
+      "boot_wait": "5s",
+      "disk_size": 20000,
+      "guest_os_type": "rhel6-64",
+      "headless": true,
+      "type": "vmware-iso",
+      "iso_url": "http://cosmos.illinois.edu/pub/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-netinstall.iso",
+      "iso_checksum": "9e0ee4c5d9d0371fa0c0809b487ee5bb",
+      "iso_checksum_type": "md5",
+      "ssh_username": "root",
+      "ssh_password": "ood",
+      "ssh_wait_timeout": "20m",
+      "shutdown_command": "shutdown -P now",
+      "http_directory": ".",
+      "format": "ovf"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "ood-setup.sh"
+    },
+    {
+      "type": "shell",
+      "inline": ["yum install -y open-vm-tools"],
+      "only": ["vmware-iso"]
+    },
+    {
+      "type": "shell",
+      "script": "vm-cleanup.sh"
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "shell-local",
+      "inline": [
+        "ovftool output-${PACKER_BUILD_NAME}/packer-${PACKER_BUILD_NAME}.vmx output-${PACKER_BUILD_NAME}/packer-${PACKER_BUILD_NAME}.ova"
+      ],
+      "only": ["vmware-iso"]
+    }
+  ]
+}
