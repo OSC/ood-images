@@ -11,7 +11,7 @@ network --bootproto dhcp --onboot yes --device eth0 --noipv6
 
 # ood
 rootpw --iscrypted $6$ae53b3deef007710$BOS4bylh9l4c6KWafdToj39efiVyItSTvCRk63qexkzD3J0qygzuFdCAMtFZA4A4jODC9J/7pv5riNy.a/nxA.
-firewall --ssh
+firewall --ssh --http --port=https:tcp
 authconfig --useshadow --passalgo=sha512
 timezone --utc America/New_York
 
