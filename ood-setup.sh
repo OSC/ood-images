@@ -16,7 +16,7 @@ mkdir -p /opt/ood/src
 cd /opt/ood/src
 scl enable git19 -- git clone https://github.com/OSC/ood-portal-generator.git
 cd ood-portal-generator
-scl enable git19 -- git reset --hard v0.0.7
+scl enable git19 -- git reset --hard v0.3.1
 scl enable rh-ruby22 -- rake install
 
 # Add user to system and apache basic auth
@@ -29,14 +29,14 @@ scl enable httpd24 -- htpasswd -b -c /opt/rh/httpd24/root/etc/httpd/.htpasswd oo
 cd /opt/ood/src
 scl enable git19 -- git clone https://github.com/OSC/mod_ood_proxy.git
 cd mod_ood_proxy
-scl enable git19 -- git reset --hard v0.0.6
+scl enable git19 -- git reset --hard v0.2.0
 scl enable rh-ruby22 -- rake install
 
 # Install nginx_stage
 cd /opt/ood/src
 scl enable git19 -- git clone https://github.com/OSC/nginx_stage.git
 cd nginx_stage
-scl enable git19 -- git reset --hard v0.1.0
+scl enable git19 -- git reset --hard v0.2.1
 scl enable rh-ruby22 -- rake install
 
 # Configure nginx_stage
@@ -60,7 +60,7 @@ mkdir -p /var/www/ood/apps/sys
 cd /var/www/ood/apps/sys
 scl enable git19 -- git clone https://github.com/OSC/ood-dashboard.git dashboard
 cd dashboard
-scl enable git19 -- git reset --hard v1.7.1
+scl enable git19 -- git reset --hard v1.10.0
 scl enable rh-ruby22 -- bin/bundle install --path=vendor/bundle
 scl enable rh-ruby22 nodejs010 -- bin/rake assets:precompile RAILS_ENV=production
 scl enable rh-ruby22 nodejs010 -- bin/rake tmp:clear
@@ -69,8 +69,7 @@ scl enable rh-ruby22 nodejs010 -- bin/rake tmp:clear
 cd /var/www/ood/apps/sys
 scl enable git19 -- git clone https://github.com/OSC/ood-shell.git shell
 cd shell
-scl enable git19 -- git reset --hard v1.1.1
-mkdir tmp
+scl enable git19 -- git reset --hard v1.1.2
 scl enable nodejs010 -- npm install --prefix tmp npm
 scl enable nodejs010 -- tmp/node_modules/.bin/npm install
 
@@ -78,14 +77,14 @@ scl enable nodejs010 -- tmp/node_modules/.bin/npm install
 cd /var/www/ood/apps/sys
 scl enable git19 -- git clone https://github.com/OSC/ood-fileexplorer.git files
 cd files
-scl enable git19 -- git reset --hard v1.3.0
+scl enable git19 -- git reset --hard v1.3.1
 scl enable git19 nodejs010 -- npm i
 
 # file-editor
 cd /var/www/ood/apps/sys
 scl enable git19 -- git clone https://github.com/OSC/ood-fileeditor file-editor
 cd file-editor
-scl enable git19 -- git reset --hard v1.2.0
+scl enable git19 -- git reset --hard v1.2.3
 scl enable rh-ruby22 -- bin/bundle install --path=vendor/bundle
 scl enable rh-ruby22 nodejs010 -- bin/rake assets:precompile RAILS_ENV=production
 scl enable rh-ruby22 nodejs010 -- bin/rake tmp:clear
