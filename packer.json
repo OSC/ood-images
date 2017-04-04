@@ -3,12 +3,13 @@
     {
       "boot_command": [
         "<esc>",
-        "<wait>linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ood.ks<enter>"
+        "<wait>linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ood-el6.ks<enter>"
       ],
       "boot_wait": "5s",
       "disk_size": 20000,
       "guest_os_type": "rhel6-64",
       "headless": true,
+      "name": "ood-el6",
       "type": "vmware-iso",
       "iso_url": "http://cosmos.illinois.edu/pub/centos/6.8/isos/x86_64/CentOS-6.8-x86_64-netinstall.iso",
       "iso_checksum": "9e0ee4c5d9d0371fa0c0809b487ee5bb",
