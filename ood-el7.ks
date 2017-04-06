@@ -1,7 +1,7 @@
 install
 text
-url --url http://mirror.centos.org/centos/6/os/x86_64/
-repo --name=extras --baseurl=http://mirror.centos.org/centos/6/extras/x86_64/
+url --url http://mirror.centos.org/centos/7/os/x86_64/
+repo --name=extras --baseurl=http://mirror.centos.org/centos/7/extras/x86_64/
 lang en_US.UTF-8
 selinux --disabled
 keyboard us
@@ -11,11 +11,11 @@ network --bootproto dhcp --onboot yes --device eth0 --noipv6
 
 # ood
 rootpw --iscrypted $6$ae53b3deef007710$BOS4bylh9l4c6KWafdToj39efiVyItSTvCRk63qexkzD3J0qygzuFdCAMtFZA4A4jODC9J/7pv5riNy.a/nxA.
-firewall --ssh --http --port=https:tcp
+firewall --enable --service=ssh,http,https
 authconfig --useshadow --passalgo=sha512
 timezone --utc America/New_York
 
-bootloader --location=mbr --driveorder=sda --append="nofb quiet splash=quiet" 
+bootloader --location=mbr --driveorder=sda --append="nofb quiet splash=quiet net.ifnames=0 biosdevname=0" 
 
 zerombr
 clearpart --all --initlabel
@@ -69,7 +69,7 @@ yum install -y \
     nodejs010 \
     git19
 
-chkconfig httpd24-httpd on
+systemctl enable httpd24-httpd
 
 sync
 

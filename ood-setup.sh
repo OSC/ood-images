@@ -70,15 +70,14 @@ cd /var/www/ood/apps/sys
 scl enable git19 -- git clone https://github.com/OSC/ood-shell.git shell
 cd shell
 scl enable git19 -- git reset --hard v1.1.2
-scl enable nodejs010 -- npm install --prefix tmp npm
-scl enable nodejs010 -- tmp/node_modules/.bin/npm install
+scl enable git19 nodejs010 -- npm install
 
 # files
 cd /var/www/ood/apps/sys
 scl enable git19 -- git clone https://github.com/OSC/ood-fileexplorer.git files
 cd files
 scl enable git19 -- git reset --hard v1.3.1
-scl enable git19 nodejs010 -- npm i
+scl enable git19 nodejs010 -- npm install
 
 # file-editor
 cd /var/www/ood/apps/sys
@@ -86,5 +85,23 @@ scl enable git19 -- git clone https://github.com/OSC/ood-fileeditor file-editor
 cd file-editor
 scl enable git19 -- git reset --hard v1.2.3
 scl enable rh-ruby22 -- bin/bundle install --path=vendor/bundle
+scl enable rh-ruby22 nodejs010 -- bin/rake assets:precompile RAILS_ENV=production
+scl enable rh-ruby22 nodejs010 -- bin/rake tmp:clear
+
+# activejobs
+cd /var/www/ood/apps/sys
+scl enable git19 -- git clone https://github.com/OSC/ood-activejobs activejobs
+cd activejobs
+scl enable git19 -- git reset --hard v1.3.1
+scl enable rh-ruby22 -- bin/bundle install --path=vendor/bundle
+scl enable rh-ruby22 nodejs010 -- bin/rake assets:precompile RAILS_ENV=production
+scl enable rh-ruby22 nodejs010 -- bin/rake tmp:clear
+
+# myjobs
+cd /var/www/ood/apps/sys
+scl enable git19 -- git clone https://github.com/OSC/ood-myjobs myjobs
+cd myjobs
+scl enable git19 -- git reset --hard v2.1.2
+scl enable rh-ruby22 git19 -- bin/bundle install --path=vendor/bundle
 scl enable rh-ruby22 nodejs010 -- bin/rake assets:precompile RAILS_ENV=production
 scl enable rh-ruby22 nodejs010 -- bin/rake tmp:clear

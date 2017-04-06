@@ -1,6 +1,6 @@
 FROM centos:6
 MAINTAINER Trey Dockendorf <tdockendorf@osc.edu>
-RUN yum install -y centos-release-scl lsof sudo
+RUN yum install -y centos-release-scl lsof sudo sqlite-devel
 RUN yum install -y \
   httpd24 \
   nginx16 \

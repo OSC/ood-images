@@ -20,6 +20,27 @@
       "shutdown_command": "shutdown -P now",
       "http_directory": ".",
       "format": "ovf"
+    },
+    {
+      "boot_command": [
+        "<esc>",
+        "<wait>linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ood-el7.ks net.ifnames=0 biosdevname=0<enter>"
+      ],
+      "boot_wait": "5s",
+      "disk_size": 20000,
+      "guest_os_type": "rhel7-64",
+      "headless": true,
+      "name": "ood-el7",
+      "type": "vmware-iso",
+      "iso_url": "http://buildlogs.centos.org/rolling/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1611.iso",
+      "iso_checksum": "f2f7367deb90a25822947660c71638333ca0eceeabecc2d631be6cd508c24494",
+      "iso_checksum_type": "sha256",
+      "ssh_username": "root",
+      "ssh_password": "ood",
+      "ssh_wait_timeout": "20m",
+      "shutdown_command": "shutdown -P now",
+      "http_directory": ".",
+      "format": "ovf"
     }
   ],
   "provisioners": [
@@ -30,7 +51,7 @@
     {
       "type": "shell",
       "inline": ["yum install -y open-vm-tools"],
-      "only": ["vmware-iso"]
+      "only": ["ood-el6", "ood-el7"]
     },
     {
       "type": "shell",
@@ -43,7 +64,7 @@
       "inline": [
         "ovftool output-${PACKER_BUILD_NAME}/packer-${PACKER_BUILD_NAME}.vmx output-${PACKER_BUILD_NAME}/packer-${PACKER_BUILD_NAME}.ova"
       ],
-      "only": ["vmware-iso"]
+      "only": ["ood-el6", "ood-el7"]
     }
   ]
 }
