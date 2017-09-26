@@ -18,5 +18,9 @@ RUN /opt/ood/ood-setup.sh
 COPY launch-httpd /usr/local/bin/
 RUN mkdir -p /etc/ood/config/clusters.d
 
+RUN yum install -y \
+  httpd24-mod_ssl \
+  httpd24-mod_ldap
+
 EXPOSE 80
 CMD ["/usr/local/bin/launch-httpd"]
