@@ -16,6 +16,7 @@ COPY ood-setup.sh /opt/ood/ood-setup.sh
 RUN /opt/ood/ood-setup.sh
 
 COPY launch-httpd /usr/local/bin/
+RUN mkdir -p /etc/ood/config/clusters.d
 
 EXPOSE 80
 CMD ["/usr/local/bin/launch-httpd"]

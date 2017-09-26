@@ -7,7 +7,15 @@
 
 Launch the container:
 
-     docker run -p 8080:80 -d treydock/ood
+    docker run -p 8080:80 -d --name ood treydock/ood
+
+To set default SSH host for shell app:
+
+    docker run -p 8080:80 -d --name ood -e DEFAULT_SSHHOST=login.my_center.edu treydock/ood
+
+Add a cluster configuration file
+
+    docker cp <cluster name>.yaml ood:/etc/ood/config/clusters.d/<cluster name>.yaml
 
 ## Vagrant
 
@@ -36,7 +44,7 @@ The root password for the image is `ood`.
 
 ## Docker
 
-    docker build -t treydock/ood:0.1.0 -t treydock/ood:latest .
+    docker build -t treydock/ood:1.0.0 -t treydock/ood:latest .
 
 ## packer
 
