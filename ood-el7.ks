@@ -58,16 +58,8 @@ echo "updating system time"
 yum -t -y update
 
 yum install -y centos-release-scl
-yum install -y \
-    httpd24 \
-    nginx16 \
-    rh-passenger40 \
-    rh-ruby22 \
-    rh-ruby22-rubygem-rake \
-    rh-ruby22-rubygem-bundler \
-    rh-ruby22-ruby-devel \
-    nodejs010 \
-    git19
+yum install -y https://yum.osc.edu/ondemand/1.3/ondemand-release-web-1.3-1.el7.noarch.rpm
+yum install -y ondemand
 
 systemctl enable httpd24-httpd
 

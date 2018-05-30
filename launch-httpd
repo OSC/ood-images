@@ -2,9 +2,7 @@
 
 set -e
 
-source /opt/rh/rh-ruby22/enable
-
 # Support changing environment variable options via docker run -e
-env > /var/www/ood/apps/sys/shell/.env
+env > /etc/ood/config/apps/shell/env
 
-/opt/rh/httpd24/root/usr/sbin/httpd -DFOREGROUND
+/opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper -DFOREGROUND
