@@ -23,6 +23,10 @@ Launch and setup the VM:
 
     vagrant up
 
+## VMware
+
+Download built images at https://yum.osc.edu/ondemand/images/
+
 # Usage
 
 Access to OpenOnDemand is via the `ood` user with password `ood`.
