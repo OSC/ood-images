@@ -1,19 +1,19 @@
 # Setup
 
-    git clone https://github.com/treydock/ood-images.git
+    git clone https://github.com/OSC/ood-images.git
     cd ood-images
 
 ## Docker
 
 Launch the container:
 
-    docker run -p 8080:80 -d --name ood treydock/ood
+    docker run -p 8080:80 -d --name ood ohiosupercomputer/ood
 
 To set default SSH host for shell app:
 
-    docker run -p 8080:80 -d --name ood -e DEFAULT_SSHHOST=login.my_center.edu treydock/ood
+    docker run -p 8080:80 -d --name ood -e DEFAULT_SSHHOST=login.my_center.edu ohiosupercomputer/ood
 
-Add a cluster configuration file
+Add a cluster configuration file:
 
     docker cp <cluster name>.yaml ood:/etc/ood/config/clusters.d/<cluster name>.yaml
 
@@ -33,7 +33,7 @@ Access to OpenOnDemand is via the `ood` user with password `ood`.
 
 ## Docker/Vagrant
 
-Once the VM or container is online, the Open OnDemand interface can be accessed at localhost:8080
+Once the VM or container is online, the Open OnDemand interface can be accessed at localhost:8080.
 
 ## VMware
 
@@ -48,17 +48,24 @@ The root password for the image is `ood`.
 
 ## Docker
 
-    docker build -t treydock/ood:1.3.0 -t treydock/ood:latest .
+Build a new Docker image and tag the build as both version `1.3.0` and `latest`:
 
-## packer
+    docker build -t ohiosupercomputer/ood:1.3.0 -t ohiosupercomputer/ood:latest .
+	
+Make sure this is run from the directory where `Dockerfile` resides.
 
-Build image using packer
+## Packer
+
+Build image using Packer:
 
     packer build packer.json
 
-Debugging
+Debugging:
 
     PACKER_LOG=1 packer build -debug -on-error=ask packer.json
 
 ## Vagrant
 
+```shell
+# Vagrant dev
+```
