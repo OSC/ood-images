@@ -54,6 +54,8 @@ Build a new Docker image and tag the build as both version `1.3.0` and `latest`:
 	
 Make sure this is run from the directory where `Dockerfile` resides.
 
+Changes made to the `master` branch of this GitHub repo should automatically trigger a new build of the Docker image hosted on Docker Hub with the tag `latest`. [Here](https://hub.docker.com/r/ohiosupercomputer/ood/) is the Docker Hub repo.
+
 ## Packer
 
 Build image using Packer:
