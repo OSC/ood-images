@@ -66,9 +66,19 @@ Vagrant.configure(2) do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
     yum install -y centos-release-scl lsof sudo
-    yum install -y https://yum.osc.edu/ondemand/1.3/ondemand-release-web-1.3-1.el7.noarch.rpm
+    yum install -y https://yum.osc.edu/ondemand/latest/ondemand-release-web-1.3-1.el7.noarch.rpm
     yum install -y ondemand
+
+    sudo yum install -y epel-release yum-utils
+    sudo yum-config-manager --enable epel
+    sudo yum clean all && sudo yum update -y
+    sudo yum install -y pygpgme curl
+    sudo curl --fail -sSLo /etc/yum.repos.d/passenger.repo https://oss-binaries.phusionpassenger.com/yum/definitions/el-passenger.repo
+    sudo yum install -y nginx passenger || sudo yum-config-manager --enable cr && sudo yum install -y nginx passenger
   SHELL
   config.vm.provision "shell", path: "ood-setup.sh"
   config.vm.provision "shell", inline: "systemctl start httpd24-httpd"
+
+  #FIXME:
+  #config.vm.synced_folder "/Users/efranz/dev/ondemand", "/opt/ondemand"
 end
