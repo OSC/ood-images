@@ -1,6 +1,6 @@
 # Setup
 
-    git clone https://github.com/treydock/ood-images.git
+    git clone https://github.com/OSC/ood-images.git
     cd ood-images
 
 ## Docker
@@ -11,7 +11,7 @@ Launch the container:
 
 To set default SSH host for shell app:
 
-    docker run -p 8080:80 -d --name ood -e DEFAULT_SSHHOST=login.my_center.edu treydock/ood
+    docker run -p 8080:80 -d --name ood -e DEFAULT_SSHHOST=login.my_center.edu ohiosupercomputer/ood
 
 Add a cluster configuration file
 
@@ -48,7 +48,7 @@ The root password for the image is `ood`.
 
 ## Docker
 
-    docker build -t treydock/ood:1.3.0 -t treydock/ood:latest .
+    docker build -t ohiosupercomputer/ood:1.4.0 -t ohiosupercomputer/ood:latest .
 
 ## packer
 
