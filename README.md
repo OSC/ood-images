@@ -48,7 +48,7 @@ The root password for the image is `ood`.
 
 ## Docker
 
-    docker build -t ohiosupercomputer/ood:1.4.0 -t ohiosupercomputer/ood:latest .
+    docker build -t ohiosupercomputer/ood:1.5.0 -t ohiosupercomputer/ood:latest .
 
 ## packer
 
