@@ -7,7 +7,7 @@
 
 Launch the container:
 
-    docker run -p 8080:80 -d --name ood treydock/ood
+    docker run -p 8080:80 -d --name ood ohiosupercomputer/ood
 
 To set default SSH host for shell app:
 
@@ -59,6 +59,22 @@ Build image using packer
 Debugging
 
     PACKER_LOG=1 packer build -debug -on-error=ask packer.json
+
+Prep files and generate MD5 sums
+
+```
+VERSION=1.6.0
+mv output-ood-el6/packer-ood-el6.ova output-ood-el6/ood-el6-vmware-${VERSION}.ova
+mv output-ood-el7/packer-ood-el7.ova output-ood-el7/ood-el7-vmware-${VERSION}.ova
+cd output-ood-el6
+md5 -r ood-el6-vmware-${VERSION}.ova > ood-el6-vmware-${VERSION}.ova.md5
+cd ../output-ood-el7
+md5 -r ood-el7-vmware-${VERSION}.ova > ood-el7-vmware-${VERSION}.ova.md5
+scp -i ~/osc/.ssh/id_rsa\
+ output-ood-el6/ood-el6-vmware-${VERSION}.ova* \
+ output-ood-el7/ood-el7-vmware-${VERSION}.ova* \
+ oodpkg@repo.hpc.osc.edu:/var/www/repos/public/ondemand/images/
+```
 
 ## Vagrant
 
