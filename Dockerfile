@@ -5,6 +5,7 @@ RUN yum install -y \
         https://yum.osc.edu/ondemand/1.6/ondemand-release-web-1.6-1.el7.noarch.rpm \
     && yum clean all
 RUN yum install -y \
+        file \
         httpd24-mod_ldap \
         httpd24-mod_ssl \
         lsof \
