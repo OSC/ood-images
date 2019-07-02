@@ -1,0 +1,9 @@
+#!/bin/sh -x
+
+if [ -z $OOD_APP_DEV_DIR ]; then
+	OOD_APP_DEV_DIR=$HOME
+fi
+
+podman run --rm=true --security-opt label=disable -v $OOD_APP_DEV_DIR:$HOME/ondemand/dev \
+  --userns=keep-id \
+  -p 8080:80 ood-$USER:latest
