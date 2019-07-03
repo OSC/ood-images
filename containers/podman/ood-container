@@ -4,6 +4,13 @@ if [ -z $OOD_APP_DEV_DIR ]; then
 	OOD_APP_DEV_DIR=$HOME
 fi
 
+gem_dir="$HOME/.gem"
+
+if [ ! -d $gem_dir ]; then
+	mkdir $gem_dir
+fi
+
+
 podman run --rm=true --security-opt label=disable -v $OOD_APP_DEV_DIR:$HOME/ondemand/dev \
-  --userns=keep-id \
+  --userns=keep-id -v $gem_dir:$gem_dir \
   -p 8080:80 ood-$USER:latest

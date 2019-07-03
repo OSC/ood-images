@@ -8,7 +8,6 @@ launch_dir="/usr/local/bin"
 launch_file="launch-httpd"
 launch_file_full="$launch_dir/$launch_file"
 
-
 # add yourself as a user and become a no password sudoer
 buildah run $ctr -- groupadd $USER
 buildah run $ctr -- useradd -u $(id -u) --create-home --gid $USER $USER
@@ -17,12 +16,16 @@ buildah run $ctr -- usermod -a -G wheel $USER
 buildah run $ctr -- passwd --delete $USER
 buildah run $ctr -- passwd --delete root
 
-
 # cp the entry point and env file
 buildah run $ctr -- mkdir -p $env_dir
 buildah copy $ctr env $env_dir
 buildah copy $ctr $launch_file $launch_dir
+buildah copy $ctr bashrc $HOME/.bashrc
 buildah config --entrypoint $launch_file_full $ctr
+
+# install additional rpms
+buildah run $ctr -- yum install -y gcc ruby-devel zlib-devel git
+buildah run $ctr -- yum clean all
 
 # commit img and clean up
 buildah commit $ctr ood-$USER:latest
