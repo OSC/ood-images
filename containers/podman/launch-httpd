@@ -9,8 +9,10 @@ if [ -f "$ENV_FILE" ]; then
   env > $ENV_FILE
 fi
 
+export USER=`whoami` # $USER isn't set!?
+
 DEFAULT_DEV_DIR="$HOME/ondemand/dev"
-OOD_DEV_DIR="/var/www/ood/apps/dev/`whoami`" # $USER isn't set!?
+OOD_DEV_DIR="/var/www/ood/apps/dev/$USER"
 
 if [ -z $APP_DEV_DIR ]; then
 	APP_DEV_DIR=$DEFAULT_DEV_DIR	
@@ -21,5 +23,7 @@ sudo su root <<MKDEV
   cd $OOD_DEV_DIR
   ln -s $APP_DEV_DIR gateway
 MKDEV
+
+sudo chown $USER:$USER $HOME/ondemand # doesn't mount quite right
 
 sudo /opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper -DFOREGROUND
