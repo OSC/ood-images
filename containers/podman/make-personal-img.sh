@@ -24,4 +24,6 @@ buildah copy $ctr env $env_dir
 buildah copy $ctr $launch_file $launch_dir
 buildah config --entrypoint $launch_file_full $ctr
 
+# commit img and clean up
 buildah commit $ctr ood-$USER:latest
+buildah rm $ctr
