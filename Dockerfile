@@ -3,7 +3,7 @@ MAINTAINER Trey Dockendorf <tdockendorf@osc.edu>
 RUN yum install -y \
         centos-release-scl \
         https://yum.osc.edu/ondemand/1.6/ondemand-release-web-1.6-1.el7.noarch.rpm \
-    && yum clean all
+    && yum clean all && rm -rf /var/cache/yum/*
 RUN yum install -y \
         file \
         httpd24-mod_ldap \
@@ -12,7 +12,7 @@ RUN yum install -y \
         ondemand \
         sqlite-devel \
         sudo \
-    && yum clean all
+    && yum clean all && rm -rf /var/cache/yum/*
 
 RUN mkdir -p /opt/ood
 COPY ood-setup.sh /opt/ood/ood-setup.sh
