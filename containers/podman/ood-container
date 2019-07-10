@@ -1,0 +1,52 @@
+#!/bin/sh -x
+
+function show_help(){
+  echo "Helper script to run Open OnDemand Conainters."
+  echo ""
+  echo "  -h|--help   show this message"
+  echo "  -d|--dev    to run an interactive dev envrionment without the OOD rpm installed"
+  echo "  -p|--port   specify the port you want to bind to"
+}
+
+IMG="ood-${USER}:latest"
+PORT="8080"
+
+for arg in "$@"
+do
+  case $arg in
+    -h|--help)
+    show_help
+    exit 0
+    ;;
+
+    -d|--dev)
+    IMG="ood-dev:latest"
+    ARGS="-it"
+    ENTRY="/bin/bash"
+    shift
+    ;;
+
+    -p|--port)
+    PORT=$2
+    shift
+    shift
+    ;;
+
+esac
+done
+
+if [ -z $OOD_APP_DEV_DIR ]; then
+  OOD_APP_DEV_DIR=$HOME
+fi
+
+# load extra stuff if you want
+EXTRAS_FILE="$HOME/.local/etc/ood-container.config"
+if [ -f "$EXTRAS_FILE" ]; then
+  . $EXTRAS_FILE
+fi
+
+ARGS="${ARGS} --rm=true --security-opt label=disable -v $OOD_APP_DEV_DIR:$HOME/ondemand/dev"
+ARGS="${ARGS} --userns=keep-id ${EXTRA_ARGS} -p ${PORT}:80"
+
+podman run ${ARGS} ${IMG} ${ENTRY}
+  
