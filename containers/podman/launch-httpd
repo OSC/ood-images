@@ -11,12 +11,8 @@ fi
 
 export USER=`whoami` # $USER isn't set!?
 
-DEFAULT_DEV_DIR="$HOME/ondemand/dev"
+APP_DEV_DIR="$HOME/ondemand/dev"
 OOD_DEV_DIR="/var/www/ood/apps/dev/$USER"
-
-if [ -z $APP_DEV_DIR ]; then
-	APP_DEV_DIR=$DEFAULT_DEV_DIR	
-fi
 
 sudo su root <<MKDEV
   mkdir -p $OOD_DEV_DIR 
