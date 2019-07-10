@@ -24,7 +24,7 @@ buildah copy $ctr bashrc $HOME/.bashrc
 buildah config --entrypoint $launch_file_full $ctr
 
 # install additional rpms
-buildah run $ctr -- yum install -y gcc ruby-devel zlib-devel git
+buildah run $ctr -- yum install -y gcc rh-ruby24-ruby-devel zlib-devel git
 buildah run $ctr -- yum clean all
 
 # commit img and clean up
