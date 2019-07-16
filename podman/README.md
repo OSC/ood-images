@@ -1,4 +1,4 @@
-# Podman and Buildah OOD image creation
+# Podman and Buildah OOD images
 
 If you use RedHat's [podman](https://podman.io/) and [buildah](https://buildah.io/) stack then
 you've come to the right place for creating contianers for your Open OnDemand development environment. 
