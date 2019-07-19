@@ -7,6 +7,8 @@ you prefer.
 
 There are vangrant images in [vagrant](vagrant/) if that's what you prefer to work with.
 
+There are vagrant images in [vagrant-with-slurm](vagrant-with-slurm/) that contain full Open OnDemand and SLURM environment.
+
 There are also fully fledged Virtual Machines in the [vm](vm) directory. 
 
 # Setup

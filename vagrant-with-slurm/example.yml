@@ -1,0 +1,10 @@
+---
+v2:
+  metadata:
+    title: "Example Cluster"
+  login:
+    host: "head"
+  job:
+    adapter: "slurm"
+    bin: "/opt/slurm/bin"
+    conf: "/opt/slurm/etc/slurm.conf"

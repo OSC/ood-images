@@ -5,6 +5,7 @@ getenforce | grep -q Disabled
 if [ ! -f /.dockerenv -a $? -ne 0 ]; then
     setenforce 0
     sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selinux
+    sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/selinux/config
 fi
 
 # Add user to system and apache basic auth
