@@ -1,6 +1,6 @@
 # Open OnDemand Images
 
-This repo contains images in various technologies of the Open OnDemand System
+This repo contains images in various technologies of the Open OnDemand platform
 
 1. containers in [docker](docker/) and [podman](podman/)
 2. vagrant image in [vagrant](vagrant/)
