@@ -1,15 +1,11 @@
 # Open OnDemand Images
 
-This repo contains images in various technologies of the Open OnDemand System. 
+This repo contains images in various technologies of the Open OnDemand System
 
-There are containers in [docker](docker/) and [podman](podman/) depending on which container stack 
-you prefer.
-
-There are vangrant images in [vagrant](vagrant/) if that's what you prefer to work with.
-
-There are vagrant images in [vagrant-with-slurm](vagrant-with-slurm/) that contain full Open OnDemand and SLURM environment.
-
-There are also fully fledged Virtual Machines in the [vm](vm) directory. 
+1. containers in [docker](docker/) and [podman](podman/)
+2. vagrant image in [vagrant](vagrant/)
+3. vagrant image in [vagrant-with-slurm](vagrant-with-slurm/) that contains a full Open OnDemand and SLURM environment
+4. fully fledged Virtual Machines in the [vm](vm) directory
 
 # Setup
 
