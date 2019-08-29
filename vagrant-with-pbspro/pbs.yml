@@ -1,0 +1,10 @@
+---
+v2:
+  metadata:
+    title: "PBSPro Cluster"
+  login:
+    host: "ood"
+  job:
+    adapter: "pbspro"
+    host: "head"
+    exec: "/opt/pbs/"
