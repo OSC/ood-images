@@ -1,0 +1,12 @@
+---
+v2:
+  metadata:
+    title: "LSF Community Cluster"
+  login:
+    host: "ood"
+  job:
+    adapter: "lsf"
+    bindir: "/opt/lsf/10.1/linux2.6-glibc2.3-x86_64/bin"
+    libdir: "/opt/lsf/10.1/linux2.6-glibc2.3-x86_64/lib"
+    envdir: "/opt/lsf/10.1/conf"
+    serverdir: "/opt/lsf/10.1/linux2.6-glibc2.3-x86_64/etc"
