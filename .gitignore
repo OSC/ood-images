@@ -2,6 +2,7 @@
 *.swp
 *.code-workspace
 
+docker/ood-setup.sh
 vagrant-with-slurm/ood-home/*
 vagrant-with-slurm/ood-home/.ssh/known_hosts
 !vagrant-with-slurm/ood-home/.ssh
