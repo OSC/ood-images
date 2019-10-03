@@ -17,4 +17,8 @@ OpenOnDemand is via the `ood` user with password `ood`
 
 ## Development
 
-    docker build -t ohiosupercomputer/ood:1.5.0 -t ohiosupercomputer/ood:latest .
+    cp -f ../common/ood-setup.sh ./ood-setup.sh
+    docker build -t ohiosupercomputer/ood:1.6.17 -t ohiosupercomputer/ood:1.6 -t ohiosupercomputer/ood:latest .
+    docker push ohiosupercomputer/ood:1.6.17
+    docker push ohiosupercomputer/ood:1.6
+    docker push ohiosupercomputer/ood:latest
