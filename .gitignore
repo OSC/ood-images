@@ -3,9 +3,15 @@
 *.code-workspace
 
 docker/ood-setup.sh
-common/ood-home/*
-common/ood-home/.ssh/known_hosts
-!common/ood-home/.ssh
-!common/ood-home/.bashrc
+vagrant-with-slurm/ood-home/*
+vagrant-with-slurm/ood-home/.ssh/known_hosts
+!vagrant-with-slurm/ood-home/.ssh
+!vagrant-with-slurm/ood-home/.bashrc
+vagrant-el8-with-slurm/ood-home/*
+vagrant-el8-with-slurm/ood-home/.ssh/known_hosts
+!vagrant-el8-with-slurm/ood-home/.ssh
+!vagrant-el8-with-slurm/ood-home/.bashrc
 vagrant-with-slurm/slurm/*
 !vagrant-with-slurm/slurm/.keep
+vagrant-el8-with-slurm/slurm/*
+!vagrant-el8-with-slurm/slurm/.keep
