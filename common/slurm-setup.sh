@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SLURM_VERSION=18.08.3
+SLURM_VERSION=19.05.3-2
 set -x
 
 yum -y install epel-release
