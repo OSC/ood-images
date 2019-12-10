@@ -1,1 +1,0 @@
-../common/head-setup.sh
