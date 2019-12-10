@@ -1,17 +1,36 @@
 #!/bin/bash
 
-SLURM_VERSION=18.08.3
+SLURM_VERSION=19.05.3-2
 set -x
 
-# Install munge
 yum -y install epel-release
-yum -y install munge munge-devel
+
+source /etc/os-release
+if [ "$VERSION_ID" = "8" ]; then
+    LIBCGROUP="libcgroup"
+    which munge 1>/dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        yum -y install rpm-build bzip2-devel openssl-devel
+        pushd /tmp
+        wget https://github.com/dun/munge/releases/download/munge-0.5.13/munge-0.5.13.tar.xz
+        rpmbuild -tb --clean munge-0.5.13.tar.xz
+        yum -y install ~/rpmbuild/RPMS/x86_64/munge-0.5.13* ~/rpmbuild/RPMS/x86_64/munge-libs-0.5.13* ~/rpmbuild/RPMS/x86_64/munge-devel-0.5.13* 
+        popd
+    fi
+    yum -y install python2
+    alternatives --set python /usr/bin/python2
+else
+    LIBCGROUP="libcgroup-devel"
+    yum -y install munge munge-devel
+fi
+
+# Install munge
 install -o munge -g munge -m 0600 /vagrant/munge.key /etc/munge/munge.key
 systemctl enable munge
 systemctl start munge
 
 # Install SLURM
-yum -y install readline-devel numactl-devel pam-devel glib2-devel hwloc-devel openssl-devel curl-devel libcgroup-devel
+yum -y install readline-devel numactl-devel pam-devel glib2-devel hwloc-devel openssl-devel curl-devel $LIBCGROUP
 if [ ! -f /opt/slurm/sbin/slurmctld -a -f /vagrant/slurm/sbin/slurmctld ]; then
     [ ! -d /opt/slurm ] && mkdir /opt/slurm
     cp -r /vagrant/slurm/* /opt/slurm/
@@ -50,7 +69,6 @@ cat >/opt/slurm/etc/slurm.conf <<EOF
 # See the slurm.conf man page for more information.
 #
 ControlMachine=head
-ControlAddr=10.0.0.101
 #BackupController=
 #BackupAddr=
 # 
@@ -203,6 +221,6 @@ SlurmdDebug=3
 # 
 # 
 # COMPUTE NODES 
-NodeName=head NodeAddr=10.0.0.101 CPUs=1 State=UNKNOWN 
+NodeName=head CPUs=1 State=UNKNOWN 
 PartitionName=batch Nodes=head Default=YES MaxTime=INFINITE State=UP
 EOF

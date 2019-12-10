@@ -12,7 +12,13 @@ fi
 groupadd ood
 useradd --create-home --gid ood ood
 echo -n "ood" | passwd --stdin ood
-scl enable httpd24 -- htpasswd -b -c /opt/rh/httpd24/root/etc/httpd/.htpasswd ood ood
+
+source /etc/os-release
+if [ "$VERSION_ID" = "8" ]; then
+    htpasswd -b -c /etc/httpd/.htpasswd ood ood
+else
+    scl enable httpd24 -- htpasswd -b -c /opt/rh/httpd24/root/etc/httpd/.htpasswd ood ood
+fi
 
 # Misc
 mkdir -p /etc/ood/config/clusters.d
