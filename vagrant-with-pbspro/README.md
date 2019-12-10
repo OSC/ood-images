@@ -1,7 +1,7 @@
 # Setup
 
     vagrant plugin install vagrant-vbguest  # only required once, and is not tied to a particular Vagrant file / directory
-    git clone https://github.com/OSC/pbspro-workbench.git
+    git clone https://github.com/MorganRodgers/pbspro-workbench.git
     cd pbspro-workbench
     
 
