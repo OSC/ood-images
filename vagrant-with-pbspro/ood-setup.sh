@@ -1,1 +1,0 @@
-../common/ood-setup.sh
