@@ -1,4 +1,6 @@
-# Usage
+# Slurm (CentOS 8)
+
+## Usage
 
 Launch and setup the VMs:
 
