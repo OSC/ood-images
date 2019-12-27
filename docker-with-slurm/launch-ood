@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+runuser -u munge /usr/sbin/munged
+/opt/rh/httpd24/root/usr/sbin/httpd-scl-wrapper -DFOREGROUND

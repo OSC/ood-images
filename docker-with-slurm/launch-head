@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+if [ ! -d /home/ood ]; then
+  install -d -o ood -g ood -m 0700 /home/ood
+  install -d -o ood -g ood -m 0700 /home/ood/.ssh
+  cat > /home/ood/.bashrc <<EOS
+  [ -f /etc/bash.bashrc ] && . /etc/bash.bashrc
+  [ -f /etc/bashrc ] && . /etc/bashrc
+EOS
+  ssh-keygen -b 2048 -t rsa -f /home/ood/.ssh/id_rsa -q -N ""
+  install -o ood -g ood -m 0600 /home/ood/.ssh/id_rsa.pub /home/ood/.ssh/authorized_keys
+  chown -R ood:ood /home/ood
+fi
+
+runuser -u munge -g munge /usr/sbin/munged
+runuser -u slurm -g slurm /opt/slurm/sbin/slurmctld
+/sbin/sshd
+/opt/slurm/sbin/slurmd -N head -D
