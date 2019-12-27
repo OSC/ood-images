@@ -18,7 +18,7 @@ services:
       - head
     volumes:
       - home:/home
-      - ../common/example.yml:/etc/ood/config/clusters.d/example.yaml
+      - ../common/example.yml:/etc/ood/config/clusters.d/example.yml
   head:
     build:
       context: .
