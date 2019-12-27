@@ -11,6 +11,7 @@ if [ ! -d /home/ood ]; then
 EOS
   ssh-keygen -b 2048 -t rsa -f /home/ood/.ssh/id_rsa -q -N ""
   install -o ood -g ood -m 0600 /home/ood/.ssh/id_rsa.pub /home/ood/.ssh/authorized_keys
+  echo "head,$(hostname -I) $(cat /etc/ssh/ssh_host_rsa_key.pub)" > /home/ood/.ssh/known_hosts
   chown -R ood:ood /home/ood
 fi
 
