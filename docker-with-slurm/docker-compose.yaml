@@ -1,0 +1,31 @@
+version: '3.7'
+networks:
+  backend:
+volumes:
+  home:
+services:
+  ood:
+    build:
+      context: .
+      target: ood
+    container_name: docker-with-slurm-ood
+    hostname: ood
+    ports:
+      - 8080:80
+    networks:
+      - backend
+    depends_on:
+      - head
+    volumes:
+      - home:/home
+      - ../common/example.yml:/etc/ood/config/clusters.d/example.yml
+  head:
+    build:
+      context: .
+      target: head
+    container_name: docker-with-slurm-head
+    hostname: head
+    networks:
+      - backend
+    volumes:
+      - home:/home
