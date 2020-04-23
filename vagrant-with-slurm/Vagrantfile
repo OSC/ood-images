@@ -7,12 +7,13 @@ Vagrant.configure(2) do |config|
   config.vm.synced_folder "ood-home", "/home/ood", type: "virtualbox", mount_options: ["uid=1001","gid=1001"]
 
   config.vm.define "ood", primary: true, autostart: true do |ood|
-    ood.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
+    ood.vm.network "forwarded_port", guest: 8080, host: 8080
+    ood.vm.network "forwarded_port", guest: 5556, host: 5556
     ood.vm.network "private_network", ip: "10.0.0.100"
     ood.vm.provision "shell", inline: <<-SHELL
       yum install -y epel-release centos-release-scl lsof sudo
       yum install -y https://yum.osc.edu/ondemand/latest/ondemand-release-web-latest-1-6.noarch.rpm
-      yum install -y ondemand
+      yum install -y ondemand ondemand-dex
     SHELL
     ood.vm.provision "shell", path: "../common/ood-setup.sh"
     ood.vm.provision "shell", inline: "systemctl enable httpd24-httpd"

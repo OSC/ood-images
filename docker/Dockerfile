@@ -14,5 +14,6 @@ RUN yum install -y ondemand && yum clean all && rm -rf /var/cache/yum/*
 RUN /opt/ood/ood-setup.sh
 COPY launch-httpd /usr/local/bin/
 
-EXPOSE 80
+EXPOSE 8080
+EXPOSE 5556
 CMD ["/usr/local/bin/launch-httpd"]

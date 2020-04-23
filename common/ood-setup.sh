@@ -23,3 +23,12 @@ fi
 # Misc
 mkdir -p /etc/ood/config/clusters.d
 mkdir -p /etc/ood/config/apps/shell
+
+# Set necessary changes for dex to work where local system is not host running OnDemand
+PORT=${1:-8080}
+cat > /etc/ood/config/ood_portal.yml <<EOF
+listen_addr_port: ${PORT}
+port: ${PORT}
+servername: localhost
+EOF
+/opt/ood/ood-portal-generator/sbin/update_ood_portal
