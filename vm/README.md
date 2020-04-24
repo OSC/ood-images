@@ -24,15 +24,15 @@ Build image using packer
 Prep files and generate MD5 sums
 
 ```
-VERSION=1.6.2
-mv output-ood-el6/packer-ood-el6.ova output-ood-el6/ood-el6-vmware-${VERSION}.ova
+VERSION=1.7.11
+mv output-ood-el8/packer-ood-el8.ova output-ood-el8/ood-el8-vmware-${VERSION}.ova
 mv output-ood-el7/packer-ood-el7.ova output-ood-el7/ood-el7-vmware-${VERSION}.ova
-cd output-ood-el6
-md5 -r ood-el6-vmware-${VERSION}.ova > ood-el6-vmware-${VERSION}.ova.md5
+cd output-ood-el8
+md5 -r ood-el8-vmware-${VERSION}.ova > ood-el8-vmware-${VERSION}.ova.md5
 cd ../output-ood-el7
 md5 -r ood-el7-vmware-${VERSION}.ova > ood-el7-vmware-${VERSION}.ova.md5
 cd ..
-scp -i ~/osc/.ssh/id_rsa\
- output-ood-el6/ood-el6-vmware-${VERSION}.ova* \
+scp -i ~/osc/.ssh/id_rsa \
+ output-ood-el8/ood-el8-vmware-${VERSION}.ova* \
  output-ood-el7/ood-el7-vmware-${VERSION}.ova* \
  oodpkg@repo.hpc.osc.edu:/var/www/repos/public/ondemand/images/

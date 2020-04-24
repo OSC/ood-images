@@ -55,7 +55,7 @@ echo "updating system time"
 yum -t -y update
 
 yum install -y centos-release-scl
-yum install -y https://yum.osc.edu/ondemand/1.6/ondemand-release-web-1.6-4.noarch.rpm
+yum install -y https://yum.osc.edu/ondemand/1.7/ondemand-release-web-1.7-1.noarch.rpm
 yum install -y ondemand
 
 systemctl enable httpd24-httpd

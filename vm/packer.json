@@ -2,24 +2,23 @@
   "builders": [
     {
       "boot_command": [
-        "<esc>",
-        "<wait>linux ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ood-el6.ks<enter>"
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ood-el8.ks net.ifnames=0 biosdevname=0<enter><wait>"
       ],
       "boot_wait": "5s",
       "disk_size": 20000,
-      "guest_os_type": "rhel6-64",
+      "memory": 1024,
+      "guest_os_type": "rhel8-64",
       "headless": true,
-      "name": "ood-el6",
+      "name": "ood-el8",
       "type": "vmware-iso",
-      "iso_url": "http://mirrors.edge.kernel.org/centos/6.10/isos/x86_64/CentOS-6.10-x86_64-netinstall.iso",
-      "iso_checksum": "56f7b078a3b443095ba006cdc85319c691251cda98c5d73d12ef6db7aff6b4c1",
+      "iso_url": "http://mirrors.edge.kernel.org/centos/8.1.1911/isos/x86_64/CentOS-8.1.1911-x86_64-boot.iso",
+      "iso_checksum": "7fea13202bf2f26989df4175aace8fdc16e1137f7961c33512cbfad844008948",
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "ood",
-      "ssh_wait_timeout": "20m",
+      "ssh_timeout": "20m",
       "shutdown_command": "shutdown -P now",
-      "http_directory": ".",
-      "format": "ovf"
+      "http_directory": "."
     },
     {
       "boot_command": [
@@ -37,10 +36,9 @@
       "iso_checksum_type": "sha256",
       "ssh_username": "root",
       "ssh_password": "ood",
-      "ssh_wait_timeout": "20m",
+      "ssh_timeout": "20m",
       "shutdown_command": "shutdown -P now",
-      "http_directory": ".",
-      "format": "ovf"
+      "http_directory": "."
     }
   ],
   "provisioners": [
@@ -51,7 +49,7 @@
     {
       "type": "shell",
       "inline": ["yum install -y open-vm-tools"],
-      "only": ["ood-el6", "ood-el7"]
+      "only": ["ood-el8", "ood-el7"]
     },
     {
       "type": "shell",
@@ -64,7 +62,7 @@
       "inline": [
         "ovftool output-${PACKER_BUILD_NAME}/packer-${PACKER_BUILD_NAME}.vmx output-${PACKER_BUILD_NAME}/packer-${PACKER_BUILD_NAME}.ova"
       ],
-      "only": ["ood-el6", "ood-el7"]
+      "only": ["ood-el8", "ood-el7"]
     }
   ]
 }
