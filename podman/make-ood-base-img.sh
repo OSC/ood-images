@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-base_version="1.6"
+base_version="1.7"
 ood_rpm="https://yum.osc.edu/ondemand/${base_version}/ondemand-release-web-${base_version}-1.el7.noarch.rpm"
 install_cmd="yum install -y"
 
