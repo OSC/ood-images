@@ -4,7 +4,7 @@
 
 Launch the environment:
 
-    docker-compute up -d --build
+    docker-compose up -d --build
 
 
 Once the container is online, the Open OnDemand interface can be accessed at `http"//localhost:8080` with username `ood` and password `ood`.
