@@ -24,7 +24,7 @@ Build image using packer
 Prep files and generate MD5 sums
 
 ```
-VERSION=1.7.11
+VERSION=1.7.14
 mv output-ood-el8/packer-ood-el8.ova output-ood-el8/ood-el8-vmware-${VERSION}.ova
 mv output-ood-el7/packer-ood-el7.ova output-ood-el7/ood-el7-vmware-${VERSION}.ova
 cd output-ood-el8
@@ -36,3 +36,4 @@ scp -i ~/osc/.ssh/id_rsa \
  output-ood-el8/ood-el8-vmware-${VERSION}.ova* \
  output-ood-el7/ood-el7-vmware-${VERSION}.ova* \
  oodpkg@repo.hpc.osc.edu:/var/www/repos/public/ondemand/images/
+ssh -i ~/osc/.ssh/id_rsa oodpkg@repo.hpc.osc.edu chmod 0644 /var/www/repos/public/ondemand/images/
