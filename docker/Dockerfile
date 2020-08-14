@@ -7,9 +7,9 @@ COPY ood-setup.sh /opt/ood/ood-setup.sh
 RUN yum update -y && yum clean all && rm -rf /var/cache/yum/*
 RUN yum install -y \
         centos-release-scl \
-        https://yum.osc.edu/ondemand/1.7/ondemand-release-web-1.7-1.noarch.rpm \
+        https://yum.osc.edu/ondemand/1.8/ondemand-release-web-1.8-1.noarch.rpm \
     && yum clean all && rm -rf /var/cache/yum/*
-RUN yum install -y ondemand && yum clean all && rm -rf /var/cache/yum/*
+RUN yum install -y ondemand ondemand-dex && yum clean all && rm -rf /var/cache/yum/*
 
 RUN /opt/ood/ood-setup.sh
 COPY launch-httpd /usr/local/bin/
