@@ -71,6 +71,8 @@ Vagrant.configure(2) do |config|
     ood.vm.provision "shell", inline: <<-SHELL
       systemctl enable httpd24-httpd
       systemctl start httpd24-httpd
+      systemctl enable ondemand-dex
+      systemctl start ondemand-dex
       hostnamectl set-hostname ood
       cp -f /vagrant/hosts /etc/hosts
       cp -f /vagrant/lsf.yml /etc/ood/config/clusters.d/lsf.yml

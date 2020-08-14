@@ -20,6 +20,8 @@ Vagrant.configure(2) do |config|
     ood.vm.provision "shell", path: "../common/ood-setup.sh", args: '9080'
     ood.vm.provision "shell", inline: "systemctl enable httpd"
     ood.vm.provision "shell", inline: "systemctl start httpd"
+    ood.vm.provision "shell", inline: "systemctl enable ondemand-dex"
+    ood.vm.provision "shell", inline: "systemctl start ondemand-dex"
     ood.vm.provision "shell", inline: "systemctl disable firewalld"
     ood.vm.provision "shell", inline: "systemctl stop firewalld"
     ood.vm.provision "shell", inline: "hostnamectl set-hostname ood"
