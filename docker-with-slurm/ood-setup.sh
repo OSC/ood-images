@@ -11,6 +11,9 @@ cat > /etc/ood/config/ood_portal.yml <<EOF
 listen_addr_port: ${PORT}
 port: ${PORT}
 servername: localhost
+oidc_settings:
+  # Needed when not using HTTPS in Chrome
+  OIDCCookieSameSite: 'On'
 EOF
 /opt/ood/ood-portal-generator/sbin/update_ood_portal
 cp /build/launch-ood /usr/local/sbin/launch
