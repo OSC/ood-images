@@ -13,13 +13,15 @@ groupadd ood
 useradd --create-home --gid ood ood
 echo -n "ood" | passwd --stdin ood
 
-source /etc/os-release
-if [ "$VERSION_ID" = "8" ]; then
-    htpasswd -b -c /etc/httpd/.htpasswd ood ood
-else
-    scl enable httpd24 -- htpasswd -b -c /opt/rh/httpd24/root/etc/httpd/.htpasswd ood ood
-fi
-
 # Misc
 mkdir -p /etc/ood/config/clusters.d
 mkdir -p /etc/ood/config/apps/shell
+
+# Set necessary changes for dex to work where local system is not host running OnDemand
+PORT=${1:-8080}
+cat > /etc/ood/config/ood_portal.yml <<EOF
+listen_addr_port: ${PORT}
+port: ${PORT}
+servername: localhost
+EOF
+/opt/ood/ood-portal-generator/sbin/update_ood_portal

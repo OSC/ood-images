@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SLURM_VERSION=20.02.1
+SLURM_VERSION=20.02.3
 set -x
 
 yum -y install epel-release
@@ -17,11 +17,11 @@ if [ "$VERSION_ID" = "8" ]; then
         yum -y install ~/rpmbuild/RPMS/x86_64/munge-0.5.13* ~/rpmbuild/RPMS/x86_64/munge-libs-0.5.13* ~/rpmbuild/RPMS/x86_64/munge-devel-0.5.13* 
         popd
     fi
-    yum -y install python2
-    alternatives --set python /usr/bin/python2
+    yum -y install python3
+    alternatives --set python /usr/bin/python3
 else
     LIBCGROUP="libcgroup-devel"
-    yum -y install munge munge-devel
+    yum -y install munge munge-devel python3
 fi
 
 # Install munge

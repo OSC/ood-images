@@ -11,7 +11,8 @@ services:
     container_name: docker-with-slurm-ood
     hostname: ood
     ports:
-      - 8080:80
+      - 5556:5556
+      - 8080:8080
     networks:
       - backend
     depends_on:
