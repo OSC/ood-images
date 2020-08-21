@@ -58,6 +58,7 @@ yum install -y centos-release-scl
 yum install -y https://yum.osc.edu/ondemand/1.8/ondemand-release-web-1.8-1.noarch.rpm
 yum install -y ondemand ondemand-dex
 
+systemctl enable ondemand-dex
 systemctl enable httpd24-httpd
 
 sync
