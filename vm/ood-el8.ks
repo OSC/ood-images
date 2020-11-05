@@ -55,7 +55,6 @@ echo "updating system time"
 # update all the base packages from the updates repository
 yum -y update
 
-dnf -y module enable mod_auth_openidc:2.3
 yum install -y https://yum.osc.edu/ondemand/1.8/ondemand-release-web-1.8-1.noarch.rpm
 yum install -y ondemand ondemand-dex
 
