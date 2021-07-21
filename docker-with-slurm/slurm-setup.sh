@@ -8,10 +8,10 @@ yum -y install munge munge-devel libcgroup-devel curl bzip2 @buildsys-build \
 cp /build/munge.key /etc/munge/munge.key
 chown munge:munge /etc/munge/munge.key
 chmod 0600 /etc/munge/munge.key
-curl -o /tmp/slurm-20.02.1.tar.bz2 https://download.schedmd.com/slurm/slurm-20.02.1.tar.bz2
+curl -o /tmp/slurm-20.02.1.tar.bz2 https://download.schedmd.com/slurm/slurm-20.02.7.tar.bz2
 pushd /tmp
 tar xf slurm-20.02.1.tar.bz2
-pushd slurm-20.02.1
+pushd slurm-20.02.7
 ./configure --prefix=/opt/slurm --sysconfdir=/opt/slurm/etc
 make -j4
 make install
