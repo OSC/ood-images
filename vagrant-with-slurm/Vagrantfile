@@ -5,6 +5,7 @@ Vagrant.configure(2) do |config|
   config.vm.box = "centos/7"
   config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
   config.vm.synced_folder "ood-home", "/home/ood", type: "virtualbox", mount_options: ["uid=1001","gid=1001"]
+  config.vbguest.installer_options = { allow_kernel_upgrade: true }
 
   config.vm.define "ood", primary: true, autostart: true do |ood|
     ood.vm.network "forwarded_port", guest: 8080, host: 8080
@@ -12,7 +13,7 @@ Vagrant.configure(2) do |config|
     ood.vm.network "private_network", ip: "10.0.0.100"
     ood.vm.provision "shell", inline: <<-SHELL
       yum install -y epel-release centos-release-scl lsof sudo
-      yum install -y https://yum.osc.edu/ondemand/latest/ondemand-release-web-latest-1-6.noarch.rpm
+      yum install -y https://yum.osc.edu/ondemand/latest/ondemand-release-web-latest-1-7.noarch.rpm
       yum install -y ondemand ondemand-dex
     SHELL
     ood.vm.provision "shell", path: "../common/ood-setup.sh"
