@@ -1,30 +1,21 @@
 #!/bin/bash
 
-SLURM_VERSION=20.02.3
+SLURM_VERSION=22.05.6
 set -x
 
 yum -y install epel-release
 
 source /etc/os-release
-if [ "$VERSION_ID" = "8" ]; then
+if [[ "$VERSION_ID" == "8"* ]]; then
     LIBCGROUP="libcgroup"
-    which munge 1>/dev/null 2>&1
-    if [ $? -ne 0 ]; then
-        yum -y install rpm-build bzip2-devel openssl-devel
-        pushd /tmp
-        wget https://github.com/dun/munge/releases/download/munge-0.5.13/munge-0.5.13.tar.xz
-        rpmbuild -tb --clean munge-0.5.13.tar.xz
-        yum -y install ~/rpmbuild/RPMS/x86_64/munge-0.5.13* ~/rpmbuild/RPMS/x86_64/munge-libs-0.5.13* ~/rpmbuild/RPMS/x86_64/munge-devel-0.5.13* 
-        popd
-    fi
     yum -y install python3
     alternatives --set python /usr/bin/python3
 else
     LIBCGROUP="libcgroup-devel"
-    yum -y install munge munge-devel python3
 fi
 
 # Install munge
+yum -y install munge munge-devel python3
 install -o munge -g munge -m 0600 /vagrant/munge.key /etc/munge/munge.key
 systemctl enable munge
 systemctl start munge
@@ -125,7 +116,6 @@ StateSaveLocation=/var/spool/slurm
 SwitchType=switch/none
 #TaskEpilog=
 TaskPlugin=task/cgroup
-TaskPluginParam=Sched
 #TaskProlog=
 #TopologyPlugin=topology/tree 
 #TmpFS=/tmp 
@@ -157,7 +147,6 @@ Waittime=0
 # 
 # SCHEDULING 
 #DefMemPerCPU=0 
-FastSchedule=1
 #MaxMemPerCPU=0 
 #SchedulerTimeSlice=30 
 SchedulerType=sched/backfill
@@ -188,7 +177,6 @@ SelectTypeParameters=CR_Core
 #AccountingStoragePort=
 AccountingStorageType=accounting_storage/none
 #AccountingStorageUser=
-AccountingStoreJobComment=YES
 ClusterName=cluster
 #DebugFlags= 
 #JobCompHost=

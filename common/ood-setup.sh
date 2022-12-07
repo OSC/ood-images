@@ -23,5 +23,9 @@ cat > /etc/ood/config/ood_portal.yml <<EOF
 listen_addr_port: ${PORT}
 port: ${PORT}
 servername: localhost
+dex: true
 EOF
-/opt/ood/ood-portal-generator/sbin/update_ood_portal
+/opt/ood/ood-portal-generator/sbin/update_ood_portal --insecure
+
+sed -i 's|--rpm|--rpm --insecure|g' /etc/systemd/system/httpd.service.d/ood-portal.conf
+systemctl daemon-reload

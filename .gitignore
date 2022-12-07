@@ -1,6 +1,7 @@
 .vagrant
 *.swp
 *.code-workspace
+*.log
 
 docker/ood-setup.sh
 vagrant-with-slurm/ood-home/*
