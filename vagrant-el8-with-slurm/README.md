@@ -4,7 +4,6 @@
 
 Launch and setup the VMs:
 
-    export VAGRANT_EXPERIMENTAL="disks"
     vagrant up head
     vagrant up ood
 
